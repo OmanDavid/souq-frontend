@@ -19,6 +19,7 @@ function Navbar() {
           <Link to="/cart">Cart</Link>
           <Link to="/my-listings">My Listings</Link>
           <Link to="/my-orders">My Orders</Link>
+          <Link to="/add-product">Sell</Link>
           <button onClick={logout}>Logout</button>
         </>
       ) : (

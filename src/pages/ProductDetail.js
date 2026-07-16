@@ -8,7 +8,7 @@ function ProductDetail() {
 
   // grab current user id from token payload (simple decode, no verify needed client-side)
   const token = localStorage.getItem('token');
-  const currentUserId = token ? JSON.parse(atob(token.split('.')[1])).sub : null;
+  const currentUserId = token ? parseInt(JSON.parse(atob(token.split('.')[1])).sub) : null;
 
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)

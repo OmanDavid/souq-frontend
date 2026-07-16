@@ -9,6 +9,8 @@ import MyListings from './pages/MyListings';
 import MyOrders from './pages/MyOrders';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
+import AddProduct from './pages/AddProduct';
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
       <Navbar />
       <Routes>
         {/* public routes */}
+        <Route path="/add-product" element={<ProtectedRoute><AddProduct /></ProtectedRoute>} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
