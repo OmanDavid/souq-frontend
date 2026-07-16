@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-function Register() {
-  const [name, setName] = useState('');
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -10,35 +9,35 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/auth/register', {
+    const res = await fetch('http://localhost:5000/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ email, password })
     });
+    const data = await res.json();
     if (res.ok) {
-      navigate('/login');
+      localStorage.setItem('token', data.access_token); // save JWT
+      navigate('/');
     } else {
-      const data = await res.json();
       setError(data.error);
     }
   };
 
   return (
     <div className="auth-card">
-      <h2>Sign Up</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input placeholder="Name" value={name}
-          onChange={(e) => setName(e.target.value)} required />
         <input type="email" placeholder="Email" value={email}
           onChange={(e) => setEmail(e.target.value)} required />
         <input type="password" placeholder="Password" value={password}
           onChange={(e) => setPassword(e.target.value)} required />
         {error && <p className="error">{error}</p>}
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
       </form>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
+      <Link to="/reset-password">Forgot password?</Link>
+      <p>Don't have an account? <Link to="/register">Sign up</Link></p>
     </div>
   );
 }
 
-export default Register;
+export default Login;
