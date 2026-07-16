@@ -3,15 +3,16 @@ import { useEffect, useState } from 'react';
 function MyOrders() {
   const [orders, setOrders] = useState([]);
   const token = localStorage.getItem('token');
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // fetch only my orders (backend already filters by JWT identity)
   useEffect(() => {
-    fetch('http://localhost:5000/orders', {
+    fetch(`${API_URL}/orders`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
       .then(data => setOrders(data));
-  }, [token]);
+  }, [token, API_URL]);
 
   return (
     <div>

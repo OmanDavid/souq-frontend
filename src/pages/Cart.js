@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 function Cart() {
   const [orders, setOrders] = useState([]);
   const token = localStorage.getItem('token');
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    fetch('http://localhost:5000/orders', {
+    fetch(`${API_URL}/orders`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
