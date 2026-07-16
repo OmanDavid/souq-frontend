@@ -6,7 +6,6 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate();
 
-  // grab current user id from token payload (simple decode, no verify needed client-side)
   const token = localStorage.getItem('token');
   const currentUserId = token ? parseInt(JSON.parse(atob(token.split('.')[1])).sub) : null;
   const API_URL = process.env.REACT_APP_API_URL;
@@ -29,22 +28,29 @@ function ProductDetail() {
     navigate('/my-orders');
   };
 
+  const handleDelete = async () => {
+    await fetch(`${API_URL}/products/${product.id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    navigate('/my-listings');
+  };
+
   if (!product) return <p>Loading...</p>;
 
   const isOwner = product.user_id === currentUserId;
 
   return (
-    <div className="product-detail">
+    <div className="product-detail-card">
       <div className="product-image-large" />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="price">${product.price}</p>
 
-      {/* owner sees edit/delete, others see buy button */}
       {isOwner ? (
         <div>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={() => navigate(`/edit-product/${product.id}`)}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
       ) : (
         <button onClick={addToCart}>Add to Cart</button>
