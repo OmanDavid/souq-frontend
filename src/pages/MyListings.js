@@ -4,16 +4,17 @@ function MyListings() {
   const [products, setProducts] = useState([]);
   const token = localStorage.getItem('token');
   const currentUserId = token ? parseInt(JSON.parse(atob(token.split('.')[1])).sub) : null;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // fetch all products, filter to only mine (simple approach, fine for capstone scope)
   useEffect(() => {
-    fetch('http://localhost:5000/products')
+    fetch(`${API_URL}/products`)
       .then(res => res.json())
       .then(data => setProducts(data.filter(p => p.user_id === currentUserId)));
-  }, [currentUserId]);
+  }, [currentUserId, API_URL]);
 
   const deleteProduct = async (id) => {
-    await fetch(`http://localhost:5000/products/${id}`, {
+    await fetch(`${API_URL}/products/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });

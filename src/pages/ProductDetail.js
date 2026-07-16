@@ -9,15 +9,16 @@ function ProductDetail() {
   // grab current user id from token payload (simple decode, no verify needed client-side)
   const token = localStorage.getItem('token');
   const currentUserId = token ? parseInt(JSON.parse(atob(token.split('.')[1])).sub) : null;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`${API_URL}/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data));
-  }, [id]);
+  }, [id, API_URL]);
 
   const addToCart = async () => {
-    await fetch('http://localhost:5000/orders', {
+    await fetch(`${API_URL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
