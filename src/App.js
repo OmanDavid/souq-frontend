@@ -8,10 +8,12 @@ import Cart from './pages/Cart';
 import MyListings from './pages/MyListings';
 import MyOrders from './pages/MyOrders';
 import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         {/* public routes */}
         <Route path="/" element={<Home />} />
