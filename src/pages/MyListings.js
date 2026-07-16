@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 function MyListings() {
   const [products, setProducts] = useState([]);
   const token = localStorage.getItem('token');
-  const currentUserId = token ? JSON.parse(atob(token.split('.')[1])).sub : null;
+  const currentUserId = token ? parseInt(JSON.parse(atob(token.split('.')[1])).sub) : null;
 
   // fetch all products, filter to only mine (simple approach, fine for capstone scope)
   useEffect(() => {
