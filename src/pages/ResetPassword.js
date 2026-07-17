@@ -23,6 +23,7 @@ function ResetPassword() {
         <input type="email" placeholder="Email" value={email}
           onChange={(e) => setEmail(e.target.value)} required />
         <button type="submit">Send Reset Link</button>
+        <a href="/login">Back to Login</a>
       </form>
       {message && <p>{message}</p>}
     </div>

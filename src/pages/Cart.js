@@ -14,7 +14,7 @@ function Cart() {
   }, [token]);
 
   return (
-    <div>
+    <div className="cart-card">
       <h2>Cart</h2>
       {orders.map(o => (
         <div key={o.id}>Order #{o.id} — ${o.total} — {o.status}</div>
