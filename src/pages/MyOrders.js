@@ -15,7 +15,7 @@ function MyOrders() {
   }, [token, API_URL]);
 
   return (
-    <div>
+    <div className="order-card">
       <h2>My Orders</h2>
       <table>
         <thead>
