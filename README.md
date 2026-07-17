@@ -2,6 +2,10 @@
 
 React SPA for Souq, a multi-vendor marketplace connecting sellers and buyers.
 
+## Live Demo
+- Frontend: https://souq-frontend.onrender.com
+- Backend API: https://souq-backend-5qar.onrender.com
+
 ## Tech Stack
 - React (create-react-app)
 - React Router
