@@ -5,13 +5,19 @@ function MyOrders() {
   const token = localStorage.getItem('token');
   const API_URL = process.env.REACT_APP_API_URL;
 
-  // fetch only my orders (backend already filters by JWT identity)
   useEffect(() => {
     fetch(`${API_URL}/orders`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(res => res.json())
-      .then(data => setOrders(data));
+      .then(res => {
+        if (!res.ok) {
+          localStorage.removeItem('token'); // expired/invalid token
+          window.location.href = '/login';
+          return [];
+        }
+        return res.json();
+      })
+      .then(data => setOrders(Array.isArray(data) ? data : []));
   }, [token, API_URL]);
 
   return (

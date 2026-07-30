@@ -9,9 +9,16 @@ function Cart() {
     fetch(`${API_URL}/orders`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(res => res.json())
-      .then(data => setOrders(data.filter(o => o.status === 'pending')));
-  }, [token]);
+      .then(res => {
+        if (!res.ok) {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+          return [];
+        }
+        return res.json();
+      })
+      .then(data => setOrders(Array.isArray(data) ? data.filter(o => o.status === 'pending') : []));
+  }, [token, API_URL]);
 
   return (
     <div className="cart-card">
