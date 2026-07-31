@@ -42,7 +42,11 @@ function ProductDetail() {
 
   return (
     <div className="product-detail-card">
-      <div className="product-image-large" />
+      {product.image_url ? (
+        <img src={product.image_url} alt={product.title} className="product-image-large" />
+      ) : (
+        <div className="product-image-large" />
+      )}
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <p className="price">${product.price}</p>

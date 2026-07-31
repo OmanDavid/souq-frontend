@@ -31,7 +31,11 @@ function Home() {
       <div className="product-grid">
         {filteredProducts.map(p => (
           <Link to={`/products/${p.id}`} key={p.id} className="product-card">
-            <div className="product-image" />
+            {p.image_url ? (
+                <img src={p.image_url} alt={p.title} className="product-image" />
+              ) : (
+                <div className="product-image" />
+              )}
             <h4>{p.title}</h4>
             <p className="price">${p.price}</p>
           </Link>
