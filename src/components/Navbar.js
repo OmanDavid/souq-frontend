@@ -4,10 +4,12 @@ import { useState } from 'react';
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const userName = localStorage.getItem('userName');
   const [search, setSearch] = useState('');
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userName');
     navigate('/login');
   };
 
@@ -33,6 +35,7 @@ function Navbar() {
           <Link to="/my-listings">My Listings</Link>
           <Link to="/my-orders">My Orders</Link>
           <Link to="/add-product">Sell</Link>
+          <span className="greeting">Hi, {userName}</span>
           <button onClick={logout}>Logout</button>
         </>
       ) : (
