@@ -5,7 +5,8 @@ function AddProduct() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [categoryId, setCategoryId] = useState(1); // hardcode a category for now
+  const [imageUrl, setImageUrl] = useState('');
+  const [categoryId, setCategoryId] = useState(1);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const API_URL = process.env.REACT_APP_API_URL;
@@ -19,7 +20,8 @@ function AddProduct() {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        title, description, price: parseFloat(price), category_id: categoryId
+        title, description, price: parseFloat(price),
+        image_url: imageUrl, category_id: categoryId
       })
     });
     if (res.ok) navigate('/my-listings');
@@ -32,6 +34,7 @@ function AddProduct() {
         <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} required />
         <input placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
         <input type="number" placeholder="Price" value={price} onChange={e => setPrice(e.target.value)} required />
+        <input placeholder="Image URL (optional)" value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
         <button type="submit">Add Product</button>
       </form>
     </div>

@@ -27,7 +27,11 @@ function MyListings() {
       <div className="product-grid">
         {products.map(p => (
           <div className="product-card" key={p.id}>
-            <div className="product-image" />
+            {p.image_url ? (
+              <img src={p.image_url} alt={p.title} className="product-image" />
+            ) : (
+              <div className="product-image" />
+            )}
             <h4>{p.title}</h4>
             <p className="price">${p.price}</p>
             <button onClick={() => deleteProduct(p.id)}>Delete</button>
