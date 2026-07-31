@@ -16,7 +16,9 @@ import MySales from './pages/MySales';
 function App() {
   return (
     <BrowserRouter>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
+      <main style={{ flex: 1}}>
       <Routes>
         {/* public routes */}
         <Route path="/add-product" element={<ProtectedRoute><AddProduct /></ProtectedRoute>} />
@@ -32,6 +34,11 @@ function App() {
         <Route path="/my-orders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
         <Route path="/my-sales" element={<ProtectedRoute><MySales /></ProtectedRoute>} />
       </Routes>
+      </main>
+      <footer className="footer">
+        <p>© 2026 Souq</p>
+      </footer>
+      </div>
     </BrowserRouter>
   );
 }

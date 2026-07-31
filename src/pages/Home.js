@@ -19,7 +19,15 @@ function Home() {
 
   return (
     <div>
-      <h1 className='message'> Available Items</h1>
+        <div className="category-row">
+          {['All', 'Electronics', 'Clothing', 'Home', 'Others'].map(cat => (
+          <button key={cat} className={`category-pill ${cat === 'All' ? 'active' : ''}`}>{cat}</button>
+          ))}
+        </div>
+      <div className='home-header'> 
+        <h1>Available Items</h1>
+          <p>Browse listings from sellers across the marketplace</p>
+        </div>
       <div className="product-grid">
         {filteredProducts.map(p => (
           <Link to={`/products/${p.id}`} key={p.id} className="product-card">
