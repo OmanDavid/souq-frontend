@@ -19,6 +19,7 @@ function Home() {
 
   return (
     <div>
+      <h1 className='message'> Available Items</h1>
       <div className="product-grid">
         {filteredProducts.map(p => (
           <Link to={`/products/${p.id}`} key={p.id} className="product-card">
