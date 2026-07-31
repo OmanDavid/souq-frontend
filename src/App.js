@@ -11,7 +11,7 @@ import MyOrders from './pages/MyOrders';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import AddProduct from './pages/AddProduct';
-
+import MySales from './pages/MySales';
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
         <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="/my-listings" element={<ProtectedRoute><MyListings /></ProtectedRoute>} />
         <Route path="/my-orders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
+        <Route path="/my-sales" element={<ProtectedRoute><MySales /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

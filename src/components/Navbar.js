@@ -34,6 +34,7 @@ function Navbar() {
           <Link to="/cart">Cart</Link>
           <Link to="/my-listings">My Listings</Link>
           <Link to="/my-orders">My Orders</Link>
+          <Link to="/my-sales">My Sales</Link>
           <Link to="/add-product">Sell</Link>
           <span className="greeting">Hi, {userName}</span>
           <button onClick={logout}>Logout</button>
