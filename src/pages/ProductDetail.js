@@ -18,10 +18,13 @@ function ProductDetail() {
 
   const addToCart = () => {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  if (!cart.includes(product.id)) {
-    cart.push(product.id);
-    localStorage.setItem('cart', JSON.stringify(cart));
+  const existing = cart.find(item => item.id === product.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ id: product.id, quantity: 1 });
   }
+  localStorage.setItem('cart', JSON.stringify(cart));
   navigate('/cart');
 };
 
