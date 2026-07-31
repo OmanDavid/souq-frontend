@@ -18,6 +18,7 @@ function Login() {
     const data = await res.json();
     if (res.ok) {
       localStorage.setItem('token', data.access_token); // save JWT
+      localStorage.setItem('userName', data.user.name); // save user's name
       navigate('/');
     } else {
       setError(data.error);
