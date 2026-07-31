@@ -16,17 +16,14 @@ function ProductDetail() {
       .then(data => setProduct(data));
   }, [id, API_URL]);
 
-  const addToCart = async () => {
-    await fetch(`${API_URL}/orders`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ product_ids: [product.id] })
-    });
-    navigate('/my-orders');
-  };
+  const addToCart = () => {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (!cart.includes(product.id)) {
+    cart.push(product.id);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+  navigate('/cart');
+};
 
   const handleDelete = async () => {
     await fetch(`${API_URL}/products/${product.id}`, {
@@ -53,7 +50,7 @@ function ProductDetail() {
           <button onClick={handleDelete}>Delete</button>
         </div>
       ) : (
-        <button onClick={addToCart}>Buy Now</button>
+        <button onClick={addToCart}>Add to Cart</button>
       )}
     </div>
   );
