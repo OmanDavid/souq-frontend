@@ -53,7 +53,7 @@ function ProductDetail() {
           <button onClick={handleDelete}>Delete</button>
         </div>
       ) : (
-        <button onClick={addToCart}>Add to Cart</button>
+        <button onClick={addToCart}>Buy Now</button>
       )}
     </div>
   );
