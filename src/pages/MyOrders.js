@@ -24,19 +24,20 @@ function MyOrders() {
     <div className="order-card">
       <h2>My Orders</h2>
       <table>
-        <thead>
-          <tr><th>Order ID</th><th>Status</th><th>Total</th></tr>
-        </thead>
-        <tbody>
-          {orders.map(o => (
-            <tr key={o.id}>
-              <td>{o.id}</td>
-              <td>{o.status}</td>
-              <td>${o.total}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  <thead>
+    <tr><th>Order ID</th><th>Products</th><th>Status</th><th>Total</th></tr>
+  </thead>
+  <tbody>
+    {orders.map(o => (
+      <tr key={o.id}>
+        <td>{o.id}</td>
+        <td>{o.products.join(', ')}</td>
+        <td>{o.status}</td>
+        <td>${o.total}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
     </div>
   );
 }
